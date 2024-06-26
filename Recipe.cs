@@ -11,19 +11,19 @@ namespace Sashiel_ST10028058_PROG6221_POE
     internal class Recipe
     {
         // Private lists to store ingredients and steps of the recipe
-        private List<Ingredients> ingredients = new List<Ingredients>();
+        private List<Ingredient> ingredients = new List<Ingredient>();
         private List<string> steps = new List<string>();
 
         // Properties of the recipe
-        public string? RecipeName { get; set; }
+        public string? Name { get; set; }
         public string? FoodGroup { get; set; }
-        public List<Ingredients>? IngredientList => ingredients;
+        public List<Ingredient>? IngredientList => ingredients;
 
         // Method to prompt the user to enter the recipe details
-        public void EnterRecipe()
+        public void EnterDetails()
         {
             // Prompt the user to enter the name and food group of the recipe
-            RecipeName = PromptInput("Enter the name of the recipe:");
+            Name = PromptInput("Enter the name of the recipe:");
             FoodGroup = PromptInput("Enter the food group of the recipe:");
 
             // Prompt the user to enter the number of ingredients
@@ -35,11 +35,10 @@ namespace Sashiel_ST10028058_PROG6221_POE
             {
                 string name = PromptInput($"Enter the name of ingredient {i}:");
                 double quantity = GetValidatedDoubleInput($"Enter the quantity of {name}:");
-                string unitOfMeasurement = PromptInput($"Enter the unit of measurement of {name}:");
+                string unit = PromptInput($"Enter the unit of measurement of {name}:");
                 int calories = GetValidatedIntInput($"Enter the number of calories of {name}:");
-              
 
-                ingredients.Add(new Ingredients(name, quantity, unitOfMeasurement, calories, FoodGroup));
+                ingredients.Add(new Ingredient(name, quantity, unit, calories, FoodGroup));
             }
 
             // Prompt the user to enter the number of steps
@@ -57,18 +56,18 @@ namespace Sashiel_ST10028058_PROG6221_POE
         }
 
         // Method to display the recipe details
-        public void DisplayRecipe()
+        public void Display()
         {
             StringBuilder recipeInfo = new StringBuilder();
 
             // Build the recipe details string
-            recipeInfo.AppendLine($"Recipe: {RecipeName}");
+            recipeInfo.AppendLine($"Recipe: {Name}");
             recipeInfo.AppendLine($"Food Group: {FoodGroup}");
             recipeInfo.AppendLine();
             recipeInfo.AppendLine("Ingredients:");
-            foreach (Ingredients ingredient in ingredients)
+            foreach (Ingredient ingredient in ingredients)
             {
-                recipeInfo.AppendLine($"{ingredient.Name} - {ingredient.Quantity} {ingredient.UnitOfMeasurement}");
+                recipeInfo.AppendLine($"{ingredient.Name} - {ingredient.Quantity} {ingredient.Unit}");
             }
             recipeInfo.AppendLine();
             recipeInfo.AppendLine("Steps:");
@@ -92,11 +91,11 @@ namespace Sashiel_ST10028058_PROG6221_POE
         }
 
         // Method to scale the recipe quantities by a specified factor
-        public void ScaleRecipe()
+        public void Scale()
         {
             double factor = GetValidatedDoubleInput("Enter the scaling factor (0.5, 2, or 3):");
 
-            foreach (Ingredients ingredient in ingredients)
+            foreach (Ingredient ingredient in ingredients)
             {
                 ingredient.Quantity *= factor;
             }
@@ -107,17 +106,17 @@ namespace Sashiel_ST10028058_PROG6221_POE
         // Method to reset the quantities of all ingredients in the recipe
         public void ResetQuantities()
         {
-            foreach (Ingredients ingredient in ingredients)
+            foreach (Ingredient ingredient in ingredients)
             {
-                ingredient.ResetQuantities();
+                ingredient.ResetQuantity();
             }
 
             MessageBox.Show("Quantities reset successfully.");
-            DisplayRecipe();
+            Display();
         }
 
         // Method to clear the recipe data
-        public void ClearData()
+        public void Clear()
         {
             MessageBoxResult result = MessageBox.Show("Are you sure you want to clear the data?", "Clear Recipe Data", MessageBoxButton.YesNo);
             if (result == MessageBoxResult.Yes)

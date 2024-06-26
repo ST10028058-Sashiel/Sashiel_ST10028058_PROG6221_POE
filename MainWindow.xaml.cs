@@ -10,32 +10,27 @@ namespace Sashiel_ST10028058_PROG6221_POE
     public partial class MainWindow : Window
     {
         // List to store all recipes
-        private List<Recipe> recipes = new List<Recipe>();
-
-        public MainWindow()
-        {
-            InitializeComponent();
-        }
+        private List<Recipe> recipeCollection = new List<Recipe>();
 
         // Event handler for entering a new recipe
         private void EnterRecipe_Click(object sender, RoutedEventArgs e)
         {
             Recipe newRecipe = new Recipe();
-            newRecipe.EnterRecipe();
-            recipes.Add(newRecipe);
+            newRecipe.EnterDetails();
+            recipeCollection.Add(newRecipe);
             MessageBox.Show("Recipe entered successfully!");
         }
 
         // Event handler for viewing all recipes
         private void ViewAllRecipes_Click(object sender, RoutedEventArgs e)
         {
-            if (recipes == null || recipes.Count == 0)
+            if (recipeCollection == null || recipeCollection.Count == 0)
             {
                 MessageBox.Show("No recipes available.");
                 return;
             }
 
-            var recipeNames = recipes.OrderBy(r => r.RecipeName).Select(r => r.RecipeName);
+            var recipeNames = recipeCollection.OrderBy(r => r.Name).Select(r => r.Name);
             string recipeList = string.Join("\n", recipeNames);
             MessageBox.Show("List of Recipes:\n\n" + recipeList);
         }
@@ -51,11 +46,11 @@ namespace Sashiel_ST10028058_PROG6221_POE
                 return;
             }
 
-            Recipe selectedRecipe = recipes?.Find(r => r.RecipeName == recipeName);
+            Recipe selectedRecipe = recipeCollection?.Find(r => r.Name == recipeName);
 
             if (selectedRecipe != null)
             {
-                selectedRecipe.DisplayRecipe();
+                selectedRecipe.Display();
             }
             else
             {
@@ -74,11 +69,11 @@ namespace Sashiel_ST10028058_PROG6221_POE
                 return;
             }
 
-            Recipe scaleRecipe = recipes?.Find(r => r.RecipeName == recipeName);
+            Recipe recipeToScale = recipeCollection?.Find(r => r.Name == recipeName);
 
-            if (scaleRecipe != null)
+            if (recipeToScale != null)
             {
-                scaleRecipe.ScaleRecipe();
+                recipeToScale.Scale();
                 MessageBox.Show("Recipe scaled successfully!");
             }
             else
@@ -98,7 +93,7 @@ namespace Sashiel_ST10028058_PROG6221_POE
                 return;
             }
 
-            Recipe recipeToReset = recipes?.Find(r => r.RecipeName == recipeName);
+            Recipe recipeToReset = recipeCollection?.Find(r => r.Name == recipeName);
 
             if (recipeToReset != null)
             {
@@ -122,12 +117,12 @@ namespace Sashiel_ST10028058_PROG6221_POE
                 return;
             }
 
-            Recipe clearRecipe = recipes?.Find(r => r.RecipeName == recipeName);
+            Recipe recipeToClear = recipeCollection?.Find(r => r.Name == recipeName);
 
-            if (clearRecipe != null)
+            if (recipeToClear != null)
             {
-                clearRecipe.ClearData();
-                recipes.Remove(clearRecipe);
+                recipeToClear.Clear();
+                recipeCollection.Remove(recipeToClear);
                 MessageBox.Show("Data has been cleared successfully!");
             }
             else
@@ -163,7 +158,7 @@ namespace Sashiel_ST10028058_PROG6221_POE
             }
 
             // Check if recipes list is available
-            if (recipes == null || recipes.Count == 0)
+            if (recipeCollection == null || recipeCollection.Count == 0)
             {
                 MessageBox.Show("No recipes available.");
                 return;
@@ -171,7 +166,7 @@ namespace Sashiel_ST10028058_PROG6221_POE
 
             // Filter the recipes based on the provided criteria
             List<Recipe> filteredRecipes = new List<Recipe>();
-            foreach (var recipe in recipes)
+            foreach (var recipe in recipeCollection)
             {
                 if (recipe.IngredientList != null &&
                     recipe.IngredientList.Any(i => i.Name.ToLower().Contains(ingredientName.ToLower())) &&
@@ -189,7 +184,7 @@ namespace Sashiel_ST10028058_PROG6221_POE
             }
             else
             {
-                var recipeNames = filteredRecipes.OrderBy(r => r.RecipeName).Select(r => r.RecipeName);
+                var recipeNames = filteredRecipes.OrderBy(r => r.Name).Select(r => r.Name);
                 string recipeList = string.Join("\n", recipeNames);
                 MessageBox.Show("Filtered Recipes:\n\n" + recipeList);
             }

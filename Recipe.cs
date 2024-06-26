@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace Sashiel_ST10028058_PROG6221_POE
@@ -13,27 +12,28 @@ namespace Sashiel_ST10028058_PROG6221_POE
         private List<Ingredients> ingredients = new List<Ingredients>();
         private List<string> steps = new List<string>();
         public string? RecipeName { get; set; }
-        public object? Ingredients { get; internal set; }
-
-
+        public string? FoodGroup { get; set; }
+        public List<Ingredients>? IngredientList => ingredients;
 
         public void EnterRecipe()
         {
             RecipeName = PromptInput("Enter the name of the recipe:");
-            int numIngredients = int.Parse(PromptInput("Enter the number of ingredients:"));
+            FoodGroup = PromptInput("Enter the food group of the recipe:");
+
+            int numIngredients = GetValidatedIntInput("Enter the number of ingredients:");
             ingredients.Clear();
             for (int i = 1; i <= numIngredients; i++)
             {
                 string name = PromptInput($"Enter the name of ingredient {i}:");
-                double quantity = double.Parse(PromptInput($"Enter the quantity of {name}:"));
+                double quantity = GetValidatedDoubleInput($"Enter the quantity of {name}:");
                 string unitOfMeasurement = PromptInput($"Enter the unit of measurement of {name}:");
-                int calories = int.Parse(PromptInput($"Enter the number of calories of {name}:"));
-                string foodGroup = PromptInput($"Enter the food group of {name}:");
+                int calories = GetValidatedIntInput($"Enter the number of calories of {name}:");
+              
 
-                ingredients.Add(new Ingredients(name, quantity, unitOfMeasurement, calories, foodGroup));
+                ingredients.Add(new Ingredients(name, quantity, unitOfMeasurement, calories, FoodGroup));
             }
 
-            int numSteps = int.Parse(PromptInput("Enter the number of steps:"));
+            int numSteps = GetValidatedIntInput("Enter the number of steps:");
             steps.Clear();
             for (int i = 1; i <= numSteps; i++)
             {
@@ -46,10 +46,10 @@ namespace Sashiel_ST10028058_PROG6221_POE
 
         public void DisplayRecipe()
         {
-
             StringBuilder recipeInfo = new StringBuilder();
 
             recipeInfo.AppendLine($"Recipe: {RecipeName}");
+            recipeInfo.AppendLine($"Food Group: {FoodGroup}");
             recipeInfo.AppendLine();
             recipeInfo.AppendLine("Ingredients:");
             foreach (Ingredients ingredient in ingredients)
@@ -77,7 +77,7 @@ namespace Sashiel_ST10028058_PROG6221_POE
 
         public void ScaleRecipe()
         {
-            double factor = double.Parse(PromptInput("Enter the scaling factor (0.5, 2, or 3):"));
+            double factor = GetValidatedDoubleInput("Enter the scaling factor (0.5, 2, or 3):");
 
             foreach (Ingredients ingredient in ingredients)
             {
@@ -118,14 +118,24 @@ namespace Sashiel_ST10028058_PROG6221_POE
             return Interaction.InputBox(message, "Recipe Entry");
         }
 
-        internal static object Where(Func<object, bool> value)
+        private int GetValidatedIntInput(string message)
         {
-            throw new NotImplementedException();
+            int result;
+            while (!int.TryParse(PromptInput(message), out result) || result < 0)
+            {
+                MessageBox.Show("Please enter a valid positive integer.");
+            }
+            return result;
         }
-        public string? FoodGroup { get; set; }
 
-        public List<Ingredients>? IngredientList { get; set; }
+        private double GetValidatedDoubleInput(string message)
+        {
+            double result;
+            while (!double.TryParse(PromptInput(message), out result) || result < 0)
+            {
+                MessageBox.Show("Please enter a valid positive number.");
+            }
+            return result;
+        }
     }
-
 }
-

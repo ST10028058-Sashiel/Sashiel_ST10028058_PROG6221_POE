@@ -5,8 +5,31 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Sashiel_ST10028058_PROG6221_POE"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-
+        Title="PROG-POE-RecipeApp" Height="450" Width="800">
+    <Grid Background="#FAFAFA">
+        <StackPanel Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock Text="Welcome to the Recipe App"
+                       FontSize="24"
+                       FontWeight="Bold"
+                       Foreground="#333333"
+                       Margin="20"
+                       TextAlignment="Center"/>
+            <Button x:Name="btnNewRecipe" Content="Enter a New Recipe" Click="EnterRecipe_Click"
+                    Margin="5" Padding="10" FontSize="14" FontWeight="Bold" Background="#FFE0B2" BorderBrush="#FFCC80"/>
+            <Button x:Name="btnView" Content="View All Recipes" Click="ViewAllRecipes_Click"
+                    Margin="5" Padding="10" FontSize="14" FontWeight="Bold" Background="#B2EBF2" BorderBrush="#80DEEA"/>
+            <Button x:Name="btnViewAndSelect" Content="Select a Recipe to Display" Click="SelectRecipe_Click"
+                    Margin="5" Padding="10" FontSize="14" FontWeight="Bold" Background="#C8E6C9" BorderBrush="#A5D6A7"/>
+            <Button x:Name="btnScale" Content="Scale a Recipe" Click="ScaleRecipe_Click"
+                    Margin="5" Padding="10" FontSize="14" FontWeight="Bold" Background="#FFCCBC" BorderBrush="#FFAB91"/>
+            <Button x:Name="btnReset" Content="Reset Quantities for a Recipe" Click="ResetQuantities_Click"
+                    Margin="5" Padding="10" FontSize="14" FontWeight="Bold" Background="#D1C4E9" BorderBrush="#B39DDB"/>
+            <Button x:Name="btnClear" Content="Clear Recipe Data" Click="ClearData_Click"
+                    Margin="5" Padding="10" FontSize="14" FontWeight="Bold" Background="#B0BEC5" BorderBrush="#90A4AE"/>
+            <Button x:Name="btnExit" Content="Exit" Click="Exit_Click"
+                    Margin="5" Padding="10" FontSize="14" FontWeight="Bold" Background="#EF9A9A" BorderBrush="#E57373"/>
+            <Button x:Name="btnFilter" Content="Filter" Click="Filter_Click"
+                    Margin="5" Padding="10" FontSize="14" FontWeight="Bold" Background="#FFF59D" BorderBrush="#FFF176"/>
+        </StackPanel>
     </Grid>
 </Window>

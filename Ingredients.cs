@@ -31,3 +31,6 @@ namespace Sashiel_ST10028058_PROG6221_POE
         }
     }
 }
+
+//coder attribution https://javatpoint.com/wpf-in-c-sharp
+//coder attribution: A. Troelsen and P. Japikse. 2022. Pro C# 10 with .NET 6. 11th ed.West Chester, OH, USA. Apress.

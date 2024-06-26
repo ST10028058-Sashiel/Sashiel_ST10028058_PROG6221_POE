@@ -12,11 +12,7 @@ namespace Sashiel_ST10028058_PROG6221_POE
         // List to store all recipes
         private List<Recipe> recipeCollection = new List<Recipe>();
 
-        public MainWindow()
-        {
-            InitializeComponent();
-        }
-
+   
         // Event handler for entering a new recipe
         private void EnterRecipe_Click(object sender, RoutedEventArgs e)
         {

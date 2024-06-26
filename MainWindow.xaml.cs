@@ -6,8 +6,10 @@ using System.Windows.Controls;
 
 namespace Sashiel_ST10028058_PROG6221_POE
 {
+    // Interaction logic for MainWindow.xaml
     public partial class MainWindow : Window
     {
+        // List to store all recipes
         private List<Recipe> recipes = new List<Recipe>();
 
         public MainWindow()
@@ -15,6 +17,7 @@ namespace Sashiel_ST10028058_PROG6221_POE
             InitializeComponent();
         }
 
+        // Event handler for entering a new recipe
         private void EnterRecipe_Click(object sender, RoutedEventArgs e)
         {
             Recipe newRecipe = new Recipe();
@@ -23,6 +26,7 @@ namespace Sashiel_ST10028058_PROG6221_POE
             MessageBox.Show("Recipe entered successfully!");
         }
 
+        // Event handler for viewing all recipes
         private void ViewAllRecipes_Click(object sender, RoutedEventArgs e)
         {
             if (recipes == null || recipes.Count == 0)
@@ -36,6 +40,7 @@ namespace Sashiel_ST10028058_PROG6221_POE
             MessageBox.Show("List of Recipes:\n\n" + recipeList);
         }
 
+        // Event handler for selecting a recipe to display
         private void SelectRecipe_Click(object sender, RoutedEventArgs e)
         {
             string recipeName = Microsoft.VisualBasic.Interaction.InputBox("Enter the name of the recipe you want to display:", "Recipe Selection");
@@ -58,6 +63,7 @@ namespace Sashiel_ST10028058_PROG6221_POE
             }
         }
 
+        // Event handler for scaling a recipe
         private void ScaleRecipe_Click(object sender, RoutedEventArgs e)
         {
             string recipeName = Microsoft.VisualBasic.Interaction.InputBox("Enter the name of the recipe you want to scale:", "Recipe Scaling");
@@ -81,6 +87,7 @@ namespace Sashiel_ST10028058_PROG6221_POE
             }
         }
 
+        // Event handler for resetting quantities of a recipe
         private void ResetQuantities_Click(object sender, RoutedEventArgs e)
         {
             string recipeName = Microsoft.VisualBasic.Interaction.InputBox("Enter the name of the recipe you want to reset quantities:", "Reset Quantities");
@@ -104,6 +111,7 @@ namespace Sashiel_ST10028058_PROG6221_POE
             }
         }
 
+        // Event handler for clearing recipe data
         private void ClearData_Click(object sender, RoutedEventArgs e)
         {
             string recipeName = Microsoft.VisualBasic.Interaction.InputBox("Enter the name of the recipe you want to clear:", "Clear Recipe Data");
@@ -128,11 +136,13 @@ namespace Sashiel_ST10028058_PROG6221_POE
             }
         }
 
+        // Event handler for exiting the application
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }
 
+        // Event handler for filtering recipes
         private void Filter_Click(object sender, RoutedEventArgs e)
         {
             string ingredientName = Microsoft.VisualBasic.Interaction.InputBox("Enter the name of the ingredient:", "Filter by Ingredient");
@@ -165,6 +175,7 @@ namespace Sashiel_ST10028058_PROG6221_POE
             {
                 if (recipe.IngredientList != null &&
                     recipe.IngredientList.Any(i => i.Name.ToLower().Contains(ingredientName.ToLower())) &&
+                    !string.IsNullOrWhiteSpace(recipe.FoodGroup) &&
                     recipe.FoodGroup.ToLower() == foodGroup.ToLower())
                 {
                     filteredRecipes.Add(recipe);

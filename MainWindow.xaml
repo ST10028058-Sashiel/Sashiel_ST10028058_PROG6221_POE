@@ -7,27 +7,37 @@
         mc:Ignorable="d"
         Title="PROG-POE-RecipeApp" Height="450" Width="800">
     <Grid Background="#FAFAFA">
+        <!-- StackPanel to contain all the buttons and the heading -->
         <StackPanel Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <!-- Heading text for the app -->
             <TextBlock Text="Welcome to the Recipe App"
                        FontSize="24"
                        FontWeight="Bold"
                        Foreground="#333333"
                        Margin="20"
                        TextAlignment="Center"/>
+            <!-- Button to enter a new recipe -->
             <Button x:Name="btnNewRecipe" Content="Enter a New Recipe" Click="EnterRecipe_Click"
                     Margin="5" Padding="10" FontSize="14" FontWeight="Bold" Background="#FFE0B2" BorderBrush="#FFCC80"/>
+            <!-- Button to view all recipes -->
             <Button x:Name="btnView" Content="View All Recipes" Click="ViewAllRecipes_Click"
                     Margin="5" Padding="10" FontSize="14" FontWeight="Bold" Background="#B2EBF2" BorderBrush="#80DEEA"/>
+            <!-- Button to select a recipe to display -->
             <Button x:Name="btnViewAndSelect" Content="Select a Recipe to Display" Click="SelectRecipe_Click"
                     Margin="5" Padding="10" FontSize="14" FontWeight="Bold" Background="#C8E6C9" BorderBrush="#A5D6A7"/>
+            <!-- Button to scale a recipe -->
             <Button x:Name="btnScale" Content="Scale a Recipe" Click="ScaleRecipe_Click"
                     Margin="5" Padding="10" FontSize="14" FontWeight="Bold" Background="#FFCCBC" BorderBrush="#FFAB91"/>
+            <!-- Button to reset quantities of a recipe -->
             <Button x:Name="btnReset" Content="Reset Quantities for a Recipe" Click="ResetQuantities_Click"
                     Margin="5" Padding="10" FontSize="14" FontWeight="Bold" Background="#D1C4E9" BorderBrush="#B39DDB"/>
+            <!-- Button to clear recipe data -->
             <Button x:Name="btnClear" Content="Clear Recipe Data" Click="ClearData_Click"
                     Margin="5" Padding="10" FontSize="14" FontWeight="Bold" Background="#B0BEC5" BorderBrush="#90A4AE"/>
+            <!-- Button to exit the application -->
             <Button x:Name="btnExit" Content="Exit" Click="Exit_Click"
                     Margin="5" Padding="10" FontSize="14" FontWeight="Bold" Background="#EF9A9A" BorderBrush="#E57373"/>
+            <!-- Button to filter recipes -->
             <Button x:Name="btnFilter" Content="Filter" Click="Filter_Click"
                     Margin="5" Padding="10" FontSize="14" FontWeight="Bold" Background="#FFF59D" BorderBrush="#FFF176"/>
         </StackPanel>

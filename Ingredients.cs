@@ -8,6 +8,7 @@ namespace Sashiel_ST10028058_PROG6221_POE
         // Properties of the ingredient
         public string Name { get; set; }
         public double Quantity { get; set; }
+        public double OriginalQuantity { get; private set; }
         public string Unit { get; set; }
         public int Calories { get; set; }
         public string FoodGroup { get; set; }
@@ -17,15 +18,16 @@ namespace Sashiel_ST10028058_PROG6221_POE
         {
             Name = name;
             Quantity = quantity;
+            OriginalQuantity = quantity;
             Unit = unit;
             Calories = calories;
             FoodGroup = foodGroup;
         }
 
-        // Method to reset the quantity of the ingredient to zero
+        // Method to reset the quantity of the ingredient to its original value
         public void ResetQuantity()
         {
-            Quantity = 0;
+            Quantity = OriginalQuantity;
         }
     }
 }

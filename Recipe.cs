@@ -103,7 +103,7 @@ namespace Sashiel_ST10028058_PROG6221_POE
             MessageBox.Show("Recipe scaled successfully!");
         }
 
-        // Method to reset the quantities of all ingredients in the recipe
+        // Method to reset the quantities of all ingredients in the recipe to their original values
         public void ResetQuantities()
         {
             foreach (Ingredient ingredient in ingredients)

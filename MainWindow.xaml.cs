@@ -12,6 +12,11 @@ namespace Sashiel_ST10028058_PROG6221_POE
         // List to store all recipes
         private List<Recipe> recipeCollection = new List<Recipe>();
 
+        public MainWindow()
+        {
+            InitializeComponent();
+        }
+
         // Event handler for entering a new recipe
         private void EnterRecipe_Click(object sender, RoutedEventArgs e)
         {
@@ -82,7 +87,7 @@ namespace Sashiel_ST10028058_PROG6221_POE
             }
         }
 
-        // Event handler for resetting quantities of a recipe
+        // Event handler for resetting quantities of a recipe to their original values
         private void ResetQuantities_Click(object sender, RoutedEventArgs e)
         {
             string recipeName = Microsoft.VisualBasic.Interaction.InputBox("Enter the name of the recipe you want to reset quantities:", "Reset Quantities");
